@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.144 2008/06/04 21:12:50 deraadt Exp $
+#	$OpenBSD: Makefile,v 1.148 2008/10/27 00:26:33 ratchov Exp $
 #	$NetBSD: Makefile,v 1.59 1996/05/15 21:36:43 jtc Exp $
 
 #	@(#)Makefile	5.45.1.1 (Berkeley) 5/6/91
@@ -12,7 +12,7 @@ USE_GCC3?=No
 
 # Missing: mp.h
 FILES=	a.out.h ar.h assert.h bitstring.h blf.h bm.h bsd_auth.h cast.h \
-	cpio.h ctype.h curses.h db.h dbm.h des.h dirent.h disktab.h \
+	complex.h cpio.h ctype.h curses.h db.h dbm.h des.h dirent.h disktab.h \
 	dlfcn.h elf_abi.h err.h errno.h fnmatch.h fstab.h fts.h ftw.h getopt.h \
 	glob.h grp.h ifaddrs.h inttypes.h iso646.h kvm.h langinfo.h \
 	libgen.h limits.h locale.h login_cap.h malloc.h math.h md4.h \
@@ -41,7 +41,8 @@ LDIRS=	altq crypto ddb dev isofs miscfs net netatalk netinet netinet6 \
 RDIRS=	../lib/libpthread ../lib/libcompat ../lib/libcurses \
 	../lib/libform ../lib/libssl ../lib/libmenu \
 	../lib/libocurses ../lib/libossaudio ../lib/libpanel ../lib/librpcsvc \
-	../lib/libskey ../lib/libsectok ../lib/libedit ../lib/libexpat \
+	../lib/libsndio ../lib/libskey ../lib/libsectok \
+	../lib/libedit ../lib/libexpat \
 	../lib/libpcap ../lib/libutil ../lib/libusbhid ../lib/libwrap \
 	../lib/libz ../lib/libkeynote ../lib/libevent ../usr.bin/lex \
 	../gnu/lib/libreadline ../gnu/usr.sbin/sendmail/libmilter \
@@ -51,11 +52,11 @@ RDIRS=	../lib/libpthread ../lib/libcompat ../lib/libcurses \
 PRDIRS=
 
 # Directories with an includes target that use Makefile.bsd-wrapper
-WDIRS=	../usr.sbin/httpd ../gnu/usr.bin/binutils
+WDIRS=	../usr.sbin/httpd
 
 # Places using Makefile.bsd-wrapper that needs a prerequisite target met
 # before includes
-PWDIRS=	../gnu/usr.bin/binutils
+PWDIRS=
 
 .if ${USE_GCC3:L} == "yes"
 WDIRS+= ../gnu/lib/libstdc++ ../gnu/usr.bin/gcc ../gnu/lib/libobjc \
