@@ -1,5 +1,6 @@
+*.log
+*.orig
+*.rej
+.#*
 CVS
 obj
-.#*
-*.orig
-*.log
