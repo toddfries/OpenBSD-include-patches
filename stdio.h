@@ -1,4 +1,4 @@
-/*	$OpenBSD: stdio.h,v 1.35 2006/01/13 18:10:09 miod Exp $	*/
+/*	$OpenBSD: stdio.h,v 1.37 2009/10/22 01:23:16 guenther Exp $	*/
 /*	$NetBSD: stdio.h,v 1.18 1996/04/25 18:29:21 jtc Exp $	*/
 
 /*-
