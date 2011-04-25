@@ -1,4 +1,4 @@
-/*	$OpenBSD: wchar.h,v 1.12 2011/04/06 11:39:42 miod Exp $	*/
+/*	$OpenBSD: wchar.h,v 1.14 2011/04/24 08:54:02 stsp Exp $	*/
 /*	$NetBSD: wchar.h,v 1.16 2003/03/07 07:11:35 tshiozak Exp $	*/
 
 /*-
