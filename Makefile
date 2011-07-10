@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.158 2011/04/28 18:05:39 martynas Exp $
+#	$OpenBSD: Makefile,v 1.160 2011/07/09 00:46:07 henning Exp $
 #	$NetBSD: Makefile,v 1.59 1996/05/15 21:36:43 jtc Exp $
 
 #	@(#)Makefile	5.45.1.1 (Berkeley) 5/6/91
@@ -20,7 +20,7 @@ FILES=	a.out.h ar.h assert.h bitstring.h blf.h bm.h bsd_auth.h \
 	readpassphrase.h regex.h resolv.h rmd160.h search.h setjmp.h \
 	sgtty.h sha1.h sha2.h signal.h sndio.h stab.h \
 	stdbool.h stddef.h stdio.h stdlib.h \
-	string.h strings.h struct.h sysexits.h tar.h \
+	string.h strings.h struct.h sysexits.h tar.h tgmath.h \
 	time.h ttyent.h tzfile.h unistd.h utime.h utmp.h vis.h \
 	wchar.h wctype.h
 
@@ -34,7 +34,7 @@ MFILES=	float.h frame.h
 LFILES=	fcntl.h syslog.h termios.h stdarg.h stdint.h varargs.h
 
 DIRS=	arpa protocols rpc rpcsvc
-LDIRS=	altq crypto ddb dev isofs miscfs msdosfs net netatalk netinet netinet6 \
+LDIRS=	altq crypto ddb dev isofs miscfs msdosfs net netinet netinet6 \
 	netmpls netnatm net80211 netbt nfs nnpfs ntfs scsi sys ufs uvm
 
 # Directories with an includes target
