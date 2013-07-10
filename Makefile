@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.169 2013/03/21 06:48:48 deraadt Exp $
+#	$OpenBSD: Makefile,v 1.171 2013/06/19 19:47:48 robert Exp $
 #	$NetBSD: Makefile,v 1.59 1996/05/15 21:36:43 jtc Exp $
 
 #	@(#)Makefile	5.45.1.1 (Berkeley) 5/6/91
@@ -51,7 +51,7 @@ RDIRS=	../lib/librthread ../lib/libcompat ../lib/libcurses \
 	../gnu/lib/libreadline ../gnu/usr.sbin/sendmail/libmilter \
 	../sys/arch/${MACHINE} ../usr.sbin/httpd
 
-.if ${COMPILER_VERSION:L} == "gcc3" 
+.if ${COMPILER_VERSION:L} == "gcc3"
 RDIRS+= ../gnu/usr.bin/gcc ../gnu/lib/libobjc
 PRDIRS+= ../gnu/lib/libstdc++
 .elif ${COMPILER_VERSION:L} == "gcc4"
@@ -70,8 +70,19 @@ NOOBJ=	noobj
 
 # Change SYS_INCLUDE in bsd.own.mk to "symlinks" if you don't want copies
 SYS_INCLUDE?=	copies
+
 .if ${KERBEROS5:L} == "yes"
-RDIRS+= ../lib/libkrb5 ../lib/libgssapi ../lib/libkadm5srv
+RDIRS+=../kerberosV/lib/libasn1
+RDIRS+=../kerberosV/lib/libgssapi
+RDIRS+=../kerberosV/lib/libhdb
+RDIRS+=../kerberosV/lib/libkadm5clnt
+RDIRS+=../kerberosV/lib/libkafs5
+RDIRS+=../kerberosV/lib/libkrb5
+RDIRS+=../kerberosV/lib/libroken
+RDIRS+=../kerberosV/lib/libkdc
+RDIRS+=../kerberosV/lib/libwind
+RDIRS+=../kerberosV/lib/libheimbase
+RDIRS+=../kerberosV/lib/libcom_err
 .endif
 
 RUN_MAKE = if test -f Makefile.bsd-wrapper; then ${MAKE} -f Makefile.bsd-wrapper $@; else ${MAKE} $@; fi
