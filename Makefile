@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.171 2013/06/19 19:47:48 robert Exp $
+#	$OpenBSD: Makefile,v 1.174 2013/08/12 11:48:22 kettenis Exp $
 #	$NetBSD: Makefile,v 1.59 1996/05/15 21:36:43 jtc Exp $
 
 #	@(#)Makefile	5.45.1.1 (Berkeley) 5/6/91
@@ -54,13 +54,10 @@ RDIRS=	../lib/librthread ../lib/libcompat ../lib/libcurses \
 .if ${COMPILER_VERSION:L} == "gcc3"
 RDIRS+= ../gnu/usr.bin/gcc ../gnu/lib/libobjc
 PRDIRS+= ../gnu/lib/libstdc++
-.elif ${COMPILER_VERSION:L} == "gcc4"
+.else
 RDIRS+= ../gnu/usr.bin/cc/libobjc
 PRDIRS+= ../gnu/lib/libstdc++-v3
 RDIRS+= ../gnu/usr.bin/cc/include
-.else
-RDIRS+= ../gnu/egcs/libio ../gnu/egcs/libstdc++ \
-	../gnu/lib/libobjc ../gnu/egcs/gcc
 .endif
 
 # prereq implies includes
@@ -76,7 +73,7 @@ RDIRS+=../kerberosV/lib/libasn1
 RDIRS+=../kerberosV/lib/libgssapi
 RDIRS+=../kerberosV/lib/libhdb
 RDIRS+=../kerberosV/lib/libkadm5clnt
-RDIRS+=../kerberosV/lib/libkafs5
+RDIRS+=../kerberosV/lib/libkafs
 RDIRS+=../kerberosV/lib/libkrb5
 RDIRS+=../kerberosV/lib/libroken
 RDIRS+=../kerberosV/lib/libkdc
@@ -143,7 +140,7 @@ copies:
 	cd ../sys; \
 	pax -rw -pa -L \
 	    `find ${LDIRS} -follow -type f -name '*.h' '!' \
-	    '(' -path 'dev/microcode/*' -or -path 'dev/pci/drm/i915/*' ')' \
+	    '(' -path 'dev/microcode/*' -or -path 'dev/pci/drm/*/*' ')' \
 	    -print` ${DESTDIR}/usr/include
 	cd ${DESTDIR}/usr/include && rm -rf ${MACHINE} ${MACHINE_CPU} machine
 	${INSTALL} -d -o ${BINOWN} -g ${BINGRP} -m 755 \
