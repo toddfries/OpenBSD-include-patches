@@ -1,4 +1,4 @@
-/*	$OpenBSD: unistd.h,v 1.80 2013/10/24 07:34:56 guenther Exp $ */
+/*	$OpenBSD: unistd.h,v 1.83 2013/12/28 01:51:53 martynas Exp $ */
 /*	$NetBSD: unistd.h,v 1.26.4.1 1996/05/28 02:31:51 mrg Exp $	*/
 
 /*-
@@ -391,9 +391,6 @@ size_t	 confstr(int, char *, size_t)
 int	 getopt(int, char * const *, const char *);
 extern	 char *optarg;			/* getopt(3) external variables */
 extern	 int opterr, optind, optopt, optreset;
-/* XXX - getsubopt does not belong here */
-int	 getsubopt(char **, char * const *, char **);
-extern	 char *suboptarg;		/* getsubopt(3) external variable */
 #endif /* _GETOPT_DEFINED_ */
 #endif
 
@@ -439,8 +436,10 @@ pid_t	 getsid(pid_t);
 #endif
 
 #if __XPG_VISIBLE >= 500
-ssize_t  pread(int, void *, size_t, off_t);
-ssize_t  pwrite(int, const void *, size_t, off_t);
+ssize_t  pread(int, void *, size_t, off_t)
+		__attribute__((__bounded__(__buffer__,2,3)));
+ssize_t  pwrite(int, const void *, size_t, off_t)
+		__attribute__((__bounded__(__buffer__,2,3)));
 int	 ttyname_r(int, char *, size_t)
 	    __attribute__((__bounded__(__string__,2,3)));
 #endif
@@ -471,7 +470,8 @@ int	 seteuid(uid_t);
 int	faccessat(int, const char *, int, int);
 int	fchownat(int, const char *, uid_t, gid_t, int);
 int	linkat(int, const char *, int, const char *, int);
-ssize_t	readlinkat(int, const char *, char *, size_t);
+ssize_t	readlinkat(int, const char *, char *, size_t)
+		__attribute__ ((__bounded__(__string__,3,4)));
 int	symlinkat(const char *, int, const char *);
 int	unlinkat(int, const char *, int);
 #endif
@@ -508,8 +508,6 @@ int	 rcmd_af(char **, int, const char *,
 	    const char *, const char *, int *, int);
 int	 rcmdsh(char **, int, const char *,
 	    const char *, const char *, char *);
-char	*re_comp(const char *);
-int	 re_exec(const char *);
 int	 reboot(int);
 int	 revoke(const char *);
 int	 rresvport(int *);
@@ -528,8 +526,6 @@ int	 setlogin(const char *);
 void	*setmode(const char *);
 int	 setresgid(gid_t, gid_t, gid_t);
 int	 setresuid(uid_t, uid_t, uid_t);
-int	 setrgid(gid_t);
-int	 setruid(uid_t);
 void	 setusershell(void);
 int	 strtofflags(char **, u_int32_t *, u_int32_t *);
 int	 swapctl(int cmd, const void *arg, int misc);
