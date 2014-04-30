@@ -1,4 +1,4 @@
-/*	$OpenBSD: unistd.h,v 1.83 2013/12/28 01:51:53 martynas Exp $ */
+/*	$OpenBSD: unistd.h,v 1.85 2014/04/21 11:28:26 guenther Exp $ */
 /*	$NetBSD: unistd.h,v 1.26.4.1 1996/05/28 02:31:51 mrg Exp $	*/
 
 /*-
@@ -325,6 +325,11 @@
 #endif
 #endif
 
+#ifndef	_INTPTR_T_DEFINED_
+#define	_INTPTR_T_DEFINED_
+typedef	__intptr_t		intptr_t;
+#endif
+
 __BEGIN_DECLS
 __dead void	 _exit(int);
 int	 access(const char *, int);
@@ -335,10 +340,10 @@ int	 close(int);
 int	 dup(int);
 int	 dup2(int, int);
 int	 execl(const char *, const char *, ...) 
-	    __attribute__((sentinel));
+	    __attribute__((__sentinel__));
 int	 execle(const char *, const char *, ...);
 int	 execlp(const char *, const char *, ...) 
-	    __attribute__((sentinel));
+	    __attribute__((__sentinel__));
 int	 execv(const char *, char *const *);
 int	 execve(const char *, char *const *, char *const *);
 int	 execvp(const char *, char *const *);
