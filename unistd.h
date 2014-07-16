@@ -1,4 +1,4 @@
-/*	$OpenBSD: unistd.h,v 1.85 2014/04/21 11:28:26 guenther Exp $ */
+/*	$OpenBSD: unistd.h,v 1.89 2014/07/08 21:35:39 tedu Exp $ */
 /*	$NetBSD: unistd.h,v 1.26.4.1 1996/05/28 02:31:51 mrg Exp $	*/
 
 /*-
@@ -114,7 +114,7 @@
 #define _POSIX2_C_DEV				(-1) /* need C99 utility */
 #define _POSIX2_CHAR_TERM			1
 #define _POSIX2_FORT_DEV			(-1) /* need fort77 utility */
-#define _POSIX2_FORT_RUN			200112L
+#define _POSIX2_FORT_RUN			(-1) /* need asa utility */
 #define _POSIX2_LOCALEDEF			(-1)
 #define _POSIX2_PBS				(-1)
 #define _POSIX2_PBS_ACCOUNTING			(-1)
@@ -410,6 +410,9 @@ int	 fdatasync(int);
 #endif
 
 #if __XPG_VISIBLE || __BSD_VISIBLE
+#if __BSD_VISIBLE
+int	crypt_checkpass(const char *, const char *);
+#endif
 char	*crypt(const char *, const char *);
 int	 encrypt(char *, int);
 int	 fchdir(int);
@@ -535,6 +538,7 @@ void	 setusershell(void);
 int	 strtofflags(char **, u_int32_t *, u_int32_t *);
 int	 swapctl(int cmd, const void *arg, int misc);
 int	 syscall(int, ...);
+int	 getentropy(void *, size_t);
 pid_t	 __tfork_thread(const struct __tfork *, size_t, void (*)(void *),
 	    void *);
 #endif /* __BSD_VISIBLE */

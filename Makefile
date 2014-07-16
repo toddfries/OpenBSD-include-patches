@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.190 2014/05/12 19:09:00 espie Exp $
+#	$OpenBSD: Makefile,v 1.193 2014/07/14 01:01:27 deraadt Exp $
 #	$NetBSD: Makefile,v 1.59 1996/05/15 21:36:43 jtc Exp $
 
 #	@(#)Makefile	5.45.1.1 (Berkeley) 5/6/91
@@ -28,23 +28,23 @@ FILES+= ieeefp.h
 .endif
 
 MFILES=	frame.h
-LFILES=	fcntl.h syslog.h termios.h stdarg.h stdint.h varargs.h
+LFILES=	endian.h fcntl.h syslog.h termios.h stdarg.h stdint.h varargs.h
 
 DIRS=	arpa protocols rpc rpcsvc
 LDIRS=	crypto ddb dev isofs miscfs msdosfs net netinet netinet6 \
-	netmpls net80211 netbt nfs ntfs scsi sys ufs uvm
+	netmpls net80211 nfs ntfs scsi sys ufs uvm
 
 # Places that need a prerequisite target met before includes
 PRDIRS=
 
 # Directories with an includes target
-RDIRS=	../lib/libcrypto ../lib/libcurses \
-	../lib/libedit ../lib/libevent ../lib/libexpat \
-	../lib/libform ../lib/libfuse ../lib/libkeynote \
-	../lib/libmenu ../lib/libocurses ../lib/libossaudio \
-	../lib/libpanel ../lib/libpcap ../lib/librpcsvc ../lib/librthread \
-	../lib/libskey ../lib/libsqlite3 ../lib/libssl \
-	../lib/libusbhid ../lib/libutil ../lib/libz \
+RDIRS=	../lib/libcrypto ../lib/libcurses ../lib/libedit \
+	../lib/libevent ../lib/libexpat ../lib/libform \
+	../lib/libfuse ../lib/libkeynote ../lib/libmenu \
+	../lib/libocurses ../lib/libossaudio ../lib/libpanel \
+	../lib/libpcap ../lib/libressl ../lib/librpcsvc \
+	../lib/librthread ../lib/libskey ../lib/libsqlite3 \
+	../lib/libssl ../lib/libusbhid ../lib/libutil ../lib/libz \
 	../usr.bin/lex ../gnu/lib/libreadline \
 	../gnu/usr.sbin/sendmail/libmilter \
 	../sys/arch/${MACHINE}
